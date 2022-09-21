@@ -49,7 +49,7 @@ class SectionScreen extends StatelessWidget {
                 )
               ],
             ),
-            body: myCubit.sectionmodel == null ? Text('Loading') : ListView.builder(
+            body: myCubit.sectionmodel == null ? Center(child: CircularProgressIndicator(color: Colors.orange,)) : ListView.builder(
               itemCount: myCubit.sectionmodel!.data!.length,
                 itemBuilder: (context, index)
                 {
@@ -61,7 +61,8 @@ class SectionScreen extends StatelessWidget {
                     DaySection: myCubit.sectionmodel!.data![index].sectionEndTime.toString(),
 
                   );
-                }),
+                },
+            ),
           );
         },
       ),

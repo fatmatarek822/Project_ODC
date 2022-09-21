@@ -71,55 +71,54 @@ Widget defaultFormField({
       cursorColor: Colors.orange,
     );
 
-Widget DefaultElvatedButton({
-  required VoidCallback ontap,
-  required String text,
-}) =>
-    SizedBox(
-      width: double.infinity,
-      height: 50,
-      child: ElevatedButton(
-        onPressed: ontap,
-        style: ElevatedButton.styleFrom(
-          primary: Colors.orange, // b
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ), // ackground// foreground
-        ),
-        child: Text(
-          text,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-      ),
-    );
+// Widget DefaultElvatedButton({
+//   required VoidCallback ontap,
+//   required String text,
+// }) =>
+//     SizedBox(
+//       width: double.infinity,
+//       height: 50,
+//       child: ElevatedButton(
+//         onPressed: ontap,
+//         style: ElevatedButton.styleFrom(
+//           primary: Colors.orange, // b
+//           shape: RoundedRectangleBorder(
+//             borderRadius: BorderRadius.circular(15),
+//           ), // ackground// foreground
+//         ),
+//         child: Text(
+//           text,
+//           style: const TextStyle(
+//             fontSize: 20,
+//             fontWeight: FontWeight.bold,
+//             color: Colors.white,
+//           ),
+//         ),
+//       ),
+//     );
 
-Widget DefaultOutlineButton({
-  required String text,
-}) =>
-    SizedBox(
-      width: double.infinity,
-      height: 50,
-      child: OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          side: const BorderSide(
-            color: Colors.orange,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-        ),
-        onPressed: () {},
-        child: Text(
-          text,
-          style: const TextStyle(
-              color: Colors.orange, fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
+
+
+// Widget DefaultOutlineButton({
+//   required String text,
+//   required VoidCallback ontap,
+// }) =>
+//     OutlinedButton(
+//       style: OutlinedButton.styleFrom(
+//         side: const BorderSide(
+//           color: Colors.orange,
+//         ),
+//         shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(15),
+//         ),
+//       ),
+//       onPressed: ontap,
+//       child: Text(
+//         text,
+//         style: const TextStyle(
+//             color: Colors.orange, fontSize: 20, fontWeight: FontWeight.bold),
+//       ),
+//     );
 
 Widget HorizonatalDividerWithTexr() => Row(
       children: const [

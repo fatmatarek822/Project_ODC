@@ -1,4 +1,5 @@
 
+import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:odcworkshop2/view/component/core/core_components.dart';
 import 'package:odcworkshop2/view/pages/layout.dart';
@@ -28,6 +29,7 @@ class EventsScreen extends StatelessWidget {
               color: Colors.orange,
             )),
       ),
+      body: MonthView(),
       // body: MonthView(controller: EventController(),
       //   // to provide custom UI for month cells.
       //   cellBuilder: (date, events, isToday, isInMonth) {

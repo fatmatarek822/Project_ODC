@@ -12,6 +12,18 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
 
+
+  IconData suffix = Icons.visibility_outlined;
+  bool isPassword = true;
+
+  void ChangePasswordVisibility() {
+    isPassword = !isPassword;
+    suffix =
+    isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    emit(ChangePasswordVisibilityState());
+  }
+
+
   LoginCubit get(context) => BlocProvider.of(context);
   String  message = "";
   LoginModel ? user ;

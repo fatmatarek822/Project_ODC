@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odcworkshop2/view/component/core/core_components.dart';
+import 'package:odcworkshop2/view/component/login/text_form_custom.dart';
 import 'package:odcworkshop2/view/component/pages_components/authentication.dart';
+import 'package:odcworkshop2/view/pages/login.dart';
 import 'package:odcworkshop2/view_model/register/register_cubit.dart';
 import 'package:odcworkshop2/view_model/register/register_state.dart';
 
 class RegisterScreen extends StatelessWidget {
-   RegisterScreen({Key? key}) : super(key: key);
+  RegisterScreen({Key? key}) : super(key: key);
 
 
   @override
@@ -19,7 +21,7 @@ class RegisterScreen extends StatelessWidget {
         listener: (context, state){},
         builder: (context, state)
         {
-          RegisterCubit cubit = RegisterCubit.get(context);
+          RegisterCubit cubit = RegisterCubit().get(context);
 
           return Scaffold(
             body: Padding(
@@ -45,24 +47,19 @@ class RegisterScreen extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        defaultFormField(type: TextInputType.text, label: 'Name'),
-                        const SizedBox(
+                        textCustom(controller: cubit.nameController, type: TextInputType.text, label: 'Name'),
+                         SizedBox(
                           height: 20,
                         ),
-                        defaultFormField(type: TextInputType.emailAddress, label: 'E-mail'),
+                        textCustom(controller: cubit.emailController, type: TextInputType.emailAddress, label: 'Email'),
                         const SizedBox(
                           height: 10,
                         ),
-                        defaultFormField(
-                          isPassword: true,
-                          type: TextInputType.visiblePassword,
-                          label: 'Password',
-                          suffix: Icons.remove_red_eye_outlined,
-                        ),
+                        textCustom(controller: cubit.passwordController, type: TextInputType.visiblePassword, label: 'Password'),
                         const SizedBox(
                           height: 10,
                         ),
-                        defaultFormField(type: TextInputType.number, label: 'Phone Number'),
+                        textCustom(controller: cubit.phoneController, type: TextInputType.phone, label: 'Phone'),
                         const SizedBox(
                           height: 20,
                         ),
@@ -204,7 +201,23 @@ class RegisterScreen extends StatelessWidget {
                               ),
                               HorizonatalDividerWithTexr(),
                               SizedBox(height: 20,),
-                              DefaultOutlineButton(text: 'Login'),
+                              Container(
+                                width: double.infinity,
+                                height: 50,
+                                child: OutlinedButton(onPressed: ()
+                                {
+                                  navigateAndFinish(context, Login());
+                                }, child: Text('Login', style: TextStyle(fontSize: 20),),
+                                  style: OutlinedButton.styleFrom(
+                                    side: const BorderSide(
+                                      color: Colors.orange,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ],
 
                           ),

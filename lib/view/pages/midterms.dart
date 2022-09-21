@@ -11,12 +11,11 @@ class MidtermsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MidtermCubit(),
+      create: (context) => MidtermCubit()..getMidtermData(),
       child: BlocConsumer<MidtermCubit, MidtermState>(
-        listener: (context, state){},
-        builder: (context, state)
-        {
-          MidtermCubit cubit = MidtermCubit.get(context);
+        listener: (context, state) {},
+        builder: (context, state) {
+          MidtermCubit myCubit = MidtermCubit.get(context);
 
           return Scaffold(
             appBar: AppBar(
@@ -48,58 +47,33 @@ class MidtermsScreen extends StatelessWidget {
                 )
               ],
             ),
-            body: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  BuildCardLectures(
-                    name: 'Flutter',
-                    day: '2022-08-18',
-                    StartTime: '12:00pm',
-                    EndTime: '2:00pm',
-                    DaySection: 'Exam Date',
+            body: myCubit.midtermmodel == null
+                ? Center(
+                    child: CircularProgressIndicator(
+                    color: Colors.orange,
+                  ))
+                : ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    itemCount: myCubit.midtermmodel!.data!.length,
+                    itemBuilder: (context, index) {
+                      return BuildCardLectures(
+                        name: myCubit.midtermmodel!.data![index].examSubject
+                            .toString(),
+                        day: myCubit.midtermmodel!.data![index].examDate
+                            .toString(),
+                        StartTime: myCubit
+                            .midtermmodel!.data![index].examStartTime
+                            .toString(),
+                        EndTime: myCubit.midtermmodel!.data![index].examEndTime
+                            .toString(),
+                        DaySection: myCubit
+                            .midtermmodel!.data![index].examEndTime
+                            .toString(),
+                      );
+                    },
                   ),
-                  BuildCardLectures(
-                    name: 'React',
-                    day: '2022-08-20',
-                    StartTime: '12:00pm',
-                    EndTime: '2:00pm',
-                    DaySection: 'Exam Date',
-                  ),
-                  BuildCardLectures(
-                    name: 'Vue',
-                    day: '2022-08-20',
-                    StartTime: '2:00pm',
-                    EndTime: '4:00pm',
-                    DaySection: 'Exam Date',
-                  ),
-                  BuildCardLectures(
-                    name: 'Flutter',
-                    day: '2022-06-05',
-                    StartTime: '12:00pm',
-                    EndTime: '2:00pm',
-                    DaySection: 'Exam Date',
-                  ),
-                  BuildCardLectures(
-                    name: 'React',
-                    day: '2022-06-07',
-                    StartTime: '12:00pm',
-                    EndTime: '2:00pm',
-                    DaySection: 'Exam Date',
-                  ),
-                  BuildCardLectures(
-                    name: 'Vue',
-                    day: '2022-06-07',
-                    StartTime: '2:00pm',
-                    EndTime: '4:00pm',
-                    DaySection: 'Exam Date',
-                  ),
-                ],
-              ),
-            ),
           );
         },
-
       ),
     );
   }

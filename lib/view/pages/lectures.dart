@@ -11,12 +11,13 @@ class LecturesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LecturesCubit(),
+      lazy: true,
+      create: (context) => LecturesCubit()..getLectureData(),
       child: BlocConsumer<LecturesCubit, LecturesState>(
         listener: (context, state){},
         builder: (context, state)
         {
-          LecturesCubit cubit = LecturesCubit.get(context);
+          LecturesCubit myCubit = LecturesCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -47,30 +48,19 @@ class LecturesScreen extends StatelessWidget {
                 )
               ],
             ),
-            body: Column(
-              children: [
-                BuildCardLectures(
-                  name: 'Flutter',
-                  day: 'Wednesday',
-                  StartTime: '12:00pm',
-                  EndTime: '2:00pm',
-                  DaySection: 'Lecture Day',
-                ),
-                BuildCardLectures(
-                  name: 'React',
-                  day: 'Thursday',
-                  StartTime: '12:00pm',
-                  EndTime: '2:00pm',
-                  DaySection: 'Lecture Day',
-                ),
-                BuildCardLectures(
-                  name: 'Vue',
-                  day: 'Thursday',
-                  StartTime: '2:00pm',
-                  EndTime: '4:00pm',
-                  DaySection: 'Lecture Day',
-                ),
-              ],
+            body: myCubit.lecturemodel == null ? Center(child: CircularProgressIndicator(color: Colors.orange,)) : ListView.builder(
+              itemCount: myCubit.lecturemodel!.data!.length,
+              itemBuilder: (context, index)
+              {
+                return BuildCardLectures(
+                  name: myCubit.lecturemodel!.data![index].lectureSubject.toString(),
+                  day: myCubit.lecturemodel!.data![index].lectureDate.toString(),
+                  StartTime: myCubit.lecturemodel!.data![index].lectureStartTime.toString(),
+                  EndTime: myCubit.lecturemodel!.data![index].lectureEndTime.toString(),
+                  DaySection: myCubit.lecturemodel!.data![index].lectureEndTime.toString(),
+
+                );
+              },
             ),
           );
         },

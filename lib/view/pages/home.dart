@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
             backgroundColor: Colors.white,
             elevation: 0,
               ),
-             body: Column(
+              body: Column(
               children: [
               OrangeText(),
               Expanded(

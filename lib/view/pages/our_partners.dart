@@ -17,7 +17,7 @@ class OurPartnerScreen extends StatelessWidget {
               color: Colors.orange,
             ),),
         centerTitle: true,
-        title: Text('Our Partners', style: TextStyle(
+        title: const Text('Our Partners', style: TextStyle(
           fontSize: 22,
           fontWeight: FontWeight.bold,
           color: Colors.black,
@@ -38,10 +38,10 @@ class OurPartnerScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadiusDirectional.circular(50),
                     ),
-                    child: Image(image: NetworkImage('https://media-exp1.licdn.com/dms/image/C4E1BAQENDMK0ZgaW8g/company-background_10000/0/1642165538816?e=2147483647&v=beta&t=hhcgn1wfutOU_v8SU6O0mvJEP_IoLULCtSNP3pl7tgc',),),),
+                    child: const Image(image: NetworkImage('https://media-exp1.licdn.com/dms/image/C4E1BAQENDMK0ZgaW8g/company-background_10000/0/1642165538816?e=2147483647&v=beta&t=hhcgn1wfutOU_v8SU6O0mvJEP_IoLULCtSNP3pl7tgc',),),),
                   ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
+                const Padding(
+                  padding: EdgeInsets.all(10.0),
                   child: Text('ODC', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),),
                 )
               ],

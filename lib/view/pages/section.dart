@@ -32,24 +32,39 @@ class SectionScreen extends StatelessWidget {
               ),
               leading: IconButton(
                   onPressed: () {
-                    navigateTo(context, LayoutScreen());
+                    navigateTo(context, const LayoutScreen());
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
                     color: Colors.orange,
                   )),
-              actions: const [
-                Padding(
-                  padding: EdgeInsets.only(right: 20),
-                  child: Icon(
-                    Icons.filter_alt,
-                    color: Colors.orange,
-                    size: 27,
-                  ),
-                )
+              actions:  [
+                PopupMenuButton(
+                  itemBuilder:
+                      (context)
+                  {
+                    return [
+                      PopupMenuItem<int>(
+                        value: 0,
+                        child: Text("All Lectures"),
+                      ),
+
+                      PopupMenuItem<int>(
+                        value: 0,
+                        child: Text("Finished Lectures"),
+                      ),
+
+                      PopupMenuItem<int>(
+                        value: 0,
+                        child: Text("Remaining Lectures"),
+                      ),
+                    ];
+
+                  }
+                  ,),
               ],
             ),
-            body: myCubit.sectionmodel == null ? Center(child: CircularProgressIndicator(color: Colors.orange,)) : ListView.builder(
+            body: myCubit.sectionmodel == null ? const Center(child: CircularProgressIndicator(color: Colors.orange,)) : ListView.builder(
               itemCount: myCubit.sectionmodel!.data!.length,
                 itemBuilder: (context, index)
                 {

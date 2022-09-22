@@ -11,19 +11,19 @@ class FinalsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => FinalCubit(),
+      create: (context) => FinalCubit()..getFinalData(),
       child: BlocConsumer<FinalCubit, FinalState>(
-        listener: (context, state){},
-        builder: (context, state)
-        {
-          FinalCubit cubit = FinalCubit.get(context);
+        listener: (context, state) {},
+        builder: (context, state) {
+
+          FinalCubit myCubit = FinalCubit.get(context);
 
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
               centerTitle: true,
               title: const Text(
-                'Finals',
+                'Final',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 25,
@@ -48,58 +48,33 @@ class FinalsScreen extends StatelessWidget {
                 )
               ],
             ),
-            body: SingleChildScrollView(
+            body: myCubit.finalmodel == null
+                ? const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.orange,
+                ))
+                : ListView.builder(
               physics: BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  BuildCardLectures(
-                    name: 'Flutter',
-                    day: '2022-08-18',
-                    StartTime: '12:00pm',
-                    EndTime: '2:00pm',
-                    DaySection: 'Exam Date',
-                  ),
-                  BuildCardLectures(
-                    name: 'React',
-                    day: '2022-08-20',
-                    StartTime: '12:00pm',
-                    EndTime: '2:00pm',
-                    DaySection: 'Exam Date',
-                  ),
-                  BuildCardLectures(
-                    name: 'Vue',
-                    day: '2022-08-20',
-                    StartTime: '2:00pm',
-                    EndTime: '4:00pm',
-                    DaySection: 'Exam Date',
-                  ),
-                  BuildCardLectures(
-                    name: 'Flutter',
-                    day: '2022-06-05',
-                    StartTime: '12:00pm',
-                    EndTime: '2:00pm',
-                    DaySection: 'Exam Date',
-                  ),
-                  BuildCardLectures(
-                    name: 'React',
-                    day: '2022-06-07',
-                    StartTime: '12:00pm',
-                    EndTime: '2:00pm',
-                    DaySection: 'Exam Date',
-                  ),
-                  BuildCardLectures(
-                    name: 'Vue',
-                    day: '2022-06-07',
-                    StartTime: '2:00pm',
-                    EndTime: '4:00pm',
-                    DaySection: 'Exam Date',
-                  ),
-                ],
-              ),
+              itemCount: myCubit.finalmodel!.data!.length,
+              itemBuilder: (context, index) {
+                return BuildCardLectures(
+                  name: myCubit.finalmodel!.data![index].examSubject
+                      .toString(),
+                  day: myCubit.finalmodel!.data![index].examDate
+                      .toString(),
+                  StartTime: myCubit
+                      .finalmodel!.data![index].examStartTime
+                      .toString(),
+                  EndTime: myCubit.finalmodel!.data![index].examEndTime
+                      .toString(),
+                  DaySection: myCubit
+                      .finalmodel!.data![index].examEndTime
+                      .toString(),
+                );
+              },
             ),
           );
         },
-
       ),
     );
   }

@@ -19,15 +19,15 @@ class NoteScreen extends StatelessWidget {
               Icons.arrow_back_ios,
               color: Colors.orange,
             )),
-        title: Text('Add Note',style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),),
+        title: const Text('Add Note',style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),),
       ),
 
-      body: Center(child: Text('There\'s No Data To Show'),),
+      body: const Center(child: Text('There\'s No Data To Show'),),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          navigateTo(context, AddNote());
+          navigateTo(context, const AddNote());
         },
-        child: Icon(Icons.add),backgroundColor: Colors.grey,),
+        child:  Icon(Icons.add),backgroundColor: Colors.grey,),
     );
   }
 }

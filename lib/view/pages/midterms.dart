@@ -48,7 +48,7 @@ class MidtermsScreen extends StatelessWidget {
               ],
             ),
             body: myCubit.midtermmodel == null
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                     color: Colors.orange,
                   ))

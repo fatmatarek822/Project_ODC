@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    Timer(Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 2), () {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
         return Login();
       }));
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Text(
                 'Orange ',
                 style: TextStyle(
@@ -46,14 +46,14 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ],
           ),
-          SizedBox(height: 30,),
+          const SizedBox(height: 30,),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
             width: double.infinity,
             child: LinearPercentIndicator(
-              barRadius: Radius.circular(20),
+              barRadius: const Radius.circular(20),
               linearStrokeCap: LinearStrokeCap.round,
               animation: true,
               animationDuration: 1000,
@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
             ),
           ),
-          SizedBox(height: 49,),
+          const SizedBox(height: 49,),
 
 
 

@@ -22,7 +22,7 @@ class Login extends StatelessWidget {
          if(state is LoginSuccess)
          {
            print('Success');
-           navigateAndFinish(context, LayoutScreen());
+           navigateAndFinish(context, const LayoutScreen());
          }
         },
         builder: (context, state) {
@@ -37,7 +37,7 @@ class Login extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -75,7 +75,7 @@ class Login extends StatelessWidget {
                             },
                               ),
                         ),
-                        Padding(padding: EdgeInsets.only(top: 30)),
+                        const Padding(padding: EdgeInsets.only(top: 30)),
 
 
                         DefaultElvatedButton(
@@ -114,7 +114,7 @@ class Login extends StatelessWidget {
                           height: 20,
                         ),
 
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           height: 50,
                           child: OutlinedButton(onPressed: ()

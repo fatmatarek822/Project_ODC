@@ -9,7 +9,8 @@ class NewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewsCubit(),
+      lazy: true,
+      create: (context) => NewsCubit()..getNewsData(),
       child: BlocConsumer<NewsCubit, NewsState>(
         listener: (context, state){},
         builder: (context,state)
@@ -17,116 +18,96 @@ class NewsScreen extends StatelessWidget {
           NewsCubit cubit = NewsCubit.get(context);
 
           return Scaffold(
-            body: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 60, bottom: 20),
-                  child: Text(
-                    'News',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        color: Colors.black),
-                  ),
-                ),
-                Stack(
+            body: cubit.newsmodel == null ? Center(child: CircularProgressIndicator(color: Colors.orange,)) : ListView.builder(
+              itemCount: cubit.newsmodel!.data!.length,
+              itemBuilder: (context, index)
+              {
+                return Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 200,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey[350]),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Orange ',
-                              style: TextStyle(
+                    const Padding(
+                      padding: EdgeInsets.only(top: 60, bottom: 20),
+                      child: Text(
+                        'News',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                            color: Colors.black),
+                      ),
+                    ),
+                    Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            width: double.infinity,
+                            height: 200,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.grey[350]),
+                            child: Image(image: NetworkImage(cubit.newsmodel!.data![index].imageUrl!),),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Align(
+                            alignment: AlignmentDirectional.topEnd,
+                            child: Container(
+                              width: 100,
+                              height: 40,
+                              decoration: BoxDecoration(
                                   color: Colors.orange,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25),
+                                  borderRadius: BorderRadiusDirectional.circular(20)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.share,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  ),
+                                  const VerticalDivider(
+                                    width: 1,
+                                    indent: 5,
+                                    endIndent: 5,
+                                    color: Colors.white,
+                                  ),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.copy, color: Colors.white, size: 20),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Text(
-                              'Digital Center',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 25),
+                          ),
+                        ),
+                         Positioned(
+                          top: 20,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 20),
+                            child: Text(
+                                    cubit.newsmodel!.data![index].title!,
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Align(
-                        alignment: AlignmentDirectional.topEnd,
-                        child: Container(
-                          width: 100,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Colors.orange,
-                              borderRadius: BorderRadiusDirectional.circular(20)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.share,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                              ),
-                              VerticalDivider(
-                                width: 1,
-                                indent: 5,
-                                endIndent: 5,
-                                color: Colors.white,
-                              ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.copy, color: Colors.white, size: 20),
-                              ),
-                            ],
                           ),
                         ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 20,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Text(
-                          'ODC',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                         Positioned(
+                          bottom: 20,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 20),
+                            child: Text(
+                              cubit.newsmodel!.data![index].body!,
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 20,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Text(
-                          'ODC Supports All Universties',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
+                      ],
                     ),
                   ],
-                ),
-              ],
+                );
+              },
             ),
+
           );
         },
       ),

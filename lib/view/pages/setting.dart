@@ -44,26 +44,26 @@ class SettingsScreen extends StatelessWidget {
                 InkWell(
                     onTap: ()
                     {
-                      navigateTo(context, FAQScreen());
+                      navigateTo(context, const FAQScreen());
                     },
                     child: DefaultListTile(text: 'FAQ')),
                 divider(),
                 InkWell( onTap: ()
                 {
-                  navigateTo(context, TermsAndCondition());
+                  navigateTo(context, const TermsAndCondition());
                 },child: DefaultListTile(text: 'Terms & Conditions')),
                 divider(),
                 InkWell(
                     onTap: ()
                     {
-                      navigateTo(context, OurPartnerScreen());
+                      navigateTo(context, const OurPartnerScreen());
                     },
                     child: DefaultListTile(text: 'Our Partners')),
                 divider(),
                 InkWell(
                     onTap: ()
                     {
-                      navigateTo(context, SupportScreen());
+                      navigateTo(context, const SupportScreen());
                     },
                     child: DefaultListTile(text: 'Support')),
                 divider(),

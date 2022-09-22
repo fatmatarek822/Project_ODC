@@ -30,23 +30,6 @@ class EventsScreen extends StatelessWidget {
             )),
       ),
       body: MonthView(),
-      // body: MonthView(controller: EventController(),
-      //   // to provide custom UI for month cells.
-      //   cellBuilder: (date, events, isToday, isInMonth) {
-      //     // Return your widget to display as month cell.
-      //     return Container();
-      //   },
-      //   minMonth: DateTime(1990),
-      //   maxMonth: DateTime(2050),
-      //   initialMonth: DateTime(2021),
-      //   cellAspectRatio: 1,
-      //   onPageChange: (date, pageIndex) => print("$date, $pageIndex"),
-      //   onCellTap: (events, date) {
-      //     print(events);
-      //   },
-      //   startDay: WeekDays.sunday, // To change the first day of the week.
-      //   onEventTap: (event, date) => print(event),
-      //   onDateLongPress: (date) => print(date),),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odcworkshop2/view/component/core/core_components.dart';
 import 'package:odcworkshop2/view/component/login/text_form_custom.dart';
 import 'package:odcworkshop2/view/component/pages_components/authentication.dart';
+import 'package:odcworkshop2/view/pages/layout.dart';
 import 'package:odcworkshop2/view/pages/login.dart';
 import 'package:odcworkshop2/view_model/register/register_cubit.dart';
 import 'package:odcworkshop2/view_model/register/register_state.dart';
@@ -13,12 +14,20 @@ class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
 
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterState>(
-        listener: (context, state){},
+        listener: (context, state)
+        {
+          if(state is RegisterSuccess)
+          {
+            print('Success');
+            navigateAndFinish(context, const LayoutScreen());
+          }
+        },
         builder: (context, state)
         {
           RegisterCubit cubit = RegisterCubit().get(context);
@@ -27,7 +36,7 @@ class RegisterScreen extends StatelessWidget {
             body: Padding(
               padding: const EdgeInsets.only(top: 80,right: 20,left: 20,bottom: 20),
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     OrangeText(),
@@ -48,7 +57,7 @@ class RegisterScreen extends StatelessWidget {
                           height: 20,
                         ),
                         textCustom(controller: cubit.nameController, type: TextInputType.text, label: 'Name'),
-                         SizedBox(
+                         const SizedBox(
                           height: 20,
                         ),
                         textCustom(controller: cubit.emailController, type: TextInputType.emailAddress, label: 'Email'),
@@ -66,40 +75,37 @@ class RegisterScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container(
+                            SizedBox(
                               width: 100,
                               child: Column(
                                 children: [
                                   Text('Gender',),
                                   SizedBox(height: 5,),
-                                  Container(
-                                    child: DecoratedBox(
-                                      decoration: ShapeDecoration(
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(width: 1.0, style: BorderStyle.solid, color: Colors.orange),
-                                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                        ),
+                                  DecoratedBox(
+                                    decoration: const ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(width: 1.0, style: BorderStyle.solid, color: Colors.orange),
+                                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
                                       ),
-                                      child: Center(
-                                        child: DropdownButton(
-                                          underline: DropdownButtonHideUnderline(child: Container()),
-                                          value: cubit.dropdownvalue,
-                                          // Down Arrow Icon
-                                          icon: const Icon(Icons.keyboard_arrow_down),
+                                    ),
+                                    child: Center(
+                                      child: DropdownButton(
+                                        underline: DropdownButtonHideUnderline(child: Container()),
+                                        value: 'f',
+                                        items: cubit.genders,
+                                        // Down Arrow Icon
+                                        icon: const Icon(Icons.keyboard_arrow_down),
 
-                                          // Array list of items
-                                          items: cubit.Gender.map((String Gender) {
-                                            return DropdownMenuItem(
-                                              value: Gender,
-                                              child: Text(Gender),
-                                            );
-                                          }).toList(),
-                                          // After selecting the desired option,it will
-                                          // change button value to selected value
-                                          onChanged: (String? newValue) {
-                                            cubit.ChangeDropDown1(newValue);
-                                          },
-                                        ),
+                                        // Array list of items
+                                        // items: cubit.Gender.map((String Gender) {
+                                        //   return DropdownMenuItem(
+                                        //     value: Gender,
+                                        //     child: Text(Gender),
+                                        //   );
+                                        // }).toList(),
+                                        // After selecting the desired option,it will
+                                        // change button value to selected value
+                                        onChanged: (String? newValue) {},
                                       ),
                                     ),
                                   ),
@@ -111,33 +117,21 @@ class RegisterScreen extends StatelessWidget {
                               width: 100,
                               child: Column(
                                 children: [
-                                  Text('University'),
-                                  SizedBox(height: 5,),
-                                  Container(
-                                    child: DecoratedBox(
-                                      decoration: ShapeDecoration(
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(width: 1.0, style: BorderStyle.solid, color: Colors.orange),
-                                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                        ),
+                                  const Text('University'),
+                                  const SizedBox(height: 5,),
+                                  DecoratedBox(
+                                    decoration: const ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(width: 1.0, style: BorderStyle.solid, color: Colors.orange),
+                                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
                                       ),
-                                      child: Center(
-                                        child: DropdownButton(
-                                          underline: DropdownButtonHideUnderline(child: Container()),
-                                          value: cubit.dropdownvalue1,
-                                          icon: const Icon(Icons.keyboard_arrow_down),
-
-                                          // Array list of items
-                                          items: cubit.University.map((String University) {
-                                            return DropdownMenuItem(
-                                              value: University,
-                                              child: Text(University),
-                                            );
-                                          }).toList(),
-                                          onChanged: (String? newValue) {
-                                            cubit.ChangeDropDown2(newValue);
-                                          },
-                                        ),
+                                    ),
+                                    child: Center(
+                                      child: DropdownButton(
+                                        underline: DropdownButtonHideUnderline(child: Container()),
+                                        value: 'Cairo',
+                                        icon: const Icon(Icons.keyboard_arrow_down),
+                                        items: cubit.university, onChanged: (Object? value) {},
                                       ),
                                     ),
                                   ),
@@ -171,23 +165,11 @@ class RegisterScreen extends StatelessWidget {
                                     child: DropdownButton(
                                       underline: DropdownButtonHideUnderline(child: Container()),
                                       // Initial Value
-                                      value: cubit.dropdownvalue2,
+                                      value: 1,
 
                                       // Down Arrow Icon
                                       icon: const Icon(Icons.keyboard_arrow_down),
-
-                                      // Array list of items
-                                      items: cubit.Grade.map((String Grade) {
-                                        return DropdownMenuItem(
-                                          value: Grade,
-                                          child: Text(Grade),
-                                        );
-                                      }).toList(),
-                                      // After selecting the desired option,it will
-                                      // change button value to selected value
-                                      onChanged: (String? newValue) {
-                                        cubit.ChangeDropDown3(newValue);
-                                      },
+                                      items: cubit.grades, onChanged: (Object? value) {  },
                                     ),
                                   ),
                                 ),
@@ -195,19 +177,22 @@ class RegisterScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 20,
                               ),
-                              DefaultElvatedButton(text: 'Sign Up',ontap: (){}),
+                              DefaultElvatedButton(text: 'Sign Up',ontap: ()
+                              {
+                                cubit.Register();
+                              }),
                               const SizedBox(
                                 height: 20,
                               ),
                               HorizonatalDividerWithTexr(),
-                              SizedBox(height: 20,),
-                              Container(
+                              const SizedBox(height: 20,),
+                              SizedBox(
                                 width: double.infinity,
                                 height: 50,
                                 child: OutlinedButton(onPressed: ()
                                 {
                                   navigateAndFinish(context, Login());
-                                }, child: Text('Login', style: TextStyle(fontSize: 20),),
+                                }, child: const Text('Login', style: TextStyle(fontSize: 20),),
                                   style: OutlinedButton.styleFrom(
                                     side: const BorderSide(
                                       color: Colors.orange,

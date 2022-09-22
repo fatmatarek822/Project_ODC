@@ -16,7 +16,7 @@ class SupportScreen extends StatelessWidget {
             Icons.arrow_back_ios,
             color: Colors.orange,
           ),),
-        title: Text('Support', style: TextStyle(fontSize: 25, color: Colors.black),),
+        title: const Text('Support', style: TextStyle(fontSize: 25, color: Colors.black),),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -28,7 +28,7 @@ class SupportScreen extends StatelessWidget {
               TextFormField(
                 cursorColor: Colors.orange,
                 decoration: InputDecoration(
-                  label: Text(
+                  label: const Text(
                     'Name',
                   ),
                   labelStyle: TextStyle(color: Colors.grey[600]),
@@ -50,13 +50,13 @@ class SupportScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
                 cursorColor: Colors.orange,
                 decoration: InputDecoration(
-                  label: Text(
+                  label: const Text(
                     'E-Mail',
                   ),
                   labelStyle: TextStyle(color: Colors.grey[600]),
@@ -79,7 +79,7 @@ class SupportScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
@@ -87,7 +87,7 @@ class SupportScreen extends StatelessWidget {
                 maxLines: 4,
                 decoration: InputDecoration(
                   alignLabelWithHint: true,
-                  label: Text(
+                  label: const Text(
                     'What\'s making you unhappy ? ',
 
                   ),
@@ -110,7 +110,7 @@ class SupportScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 60,
               ),
               Container(
@@ -124,7 +124,7 @@ class SupportScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                       ),// ackground// foreground
                     ),
-                    child: Text(
+                    child: const Text(
                       'Submit',
                       style: TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white

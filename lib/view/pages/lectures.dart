@@ -31,7 +31,7 @@ class LecturesScreen extends StatelessWidget {
               ),
               leading: IconButton(
                   onPressed: () {
-                    navigateTo(context, LayoutScreen());
+                    navigateAndFinish(context, LayoutScreen());
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
@@ -39,6 +39,7 @@ class LecturesScreen extends StatelessWidget {
                   )),
               actions:  [
                  PopupMenuButton(
+                   icon: Icon(Icons.filter_alt, color: Colors.orange, size: 28,),
                      itemBuilder:
                      (context)
                      {
@@ -47,12 +48,10 @@ class LecturesScreen extends StatelessWidget {
                            value: 0,
                            child: Text("All Lectures"),
                          ),
-
                          PopupMenuItem<int>(
                            value: 0,
                            child: Text("Finished Lectures"),
                          ),
-
                          PopupMenuItem<int>(
                            value: 0,
                            child: Text("Remaining Lectures"),

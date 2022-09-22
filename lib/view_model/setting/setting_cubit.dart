@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odcworkshop2/view/component/core/core_components.dart';
 import 'package:odcworkshop2/view/pages/login.dart';
+import 'package:odcworkshop2/view_model/database/network/local/cache_helper.dart';
 import 'package:odcworkshop2/view_model/setting/setting_state.dart';
 
 class SettingCubit extends Cubit<SettingState>{
@@ -26,7 +27,15 @@ class SettingCubit extends Cubit<SettingState>{
                   child: Text('Close')),
               TextButton(
                 onPressed: () {
-                  navigateAndFinish(context, Login());
+                    CacheHelper.removeData(key: 'accessToken').then((value) {
+                      if (value) {
+                        navigateAndFinish(
+                          context,
+                          Login(),
+                        );
+                      }
+                    });
+                    emit(LogOutSuccess());
                 },
                 child: Text('Logout'),
               )

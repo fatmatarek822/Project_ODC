@@ -22,7 +22,7 @@ class EventsScreen extends StatelessWidget {
         ),
         leading: IconButton(
             onPressed: () {
-              navigateTo(context, LayoutScreen());
+              navigateAndFinish(context, LayoutScreen());
             },
             icon: const Icon(
               Icons.arrow_back_ios,

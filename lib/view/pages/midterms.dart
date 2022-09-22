@@ -30,21 +30,35 @@ class MidtermsScreen extends StatelessWidget {
               ),
               leading: IconButton(
                   onPressed: () {
-                    navigateTo(context, LayoutScreen());
+                    navigateAndFinish(context, LayoutScreen());
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
                     color: Colors.orange,
                   )),
-              actions: const [
-                Padding(
-                  padding: EdgeInsets.only(right: 20),
-                  child: Icon(
-                    Icons.filter_alt,
-                    color: Colors.orange,
-                    size: 27,
-                  ),
-                )
+              actions:  [
+                PopupMenuButton(
+                  icon: Icon(Icons.filter_alt, color: Colors.orange, size: 28,),
+                  itemBuilder:
+                      (context)
+                  {
+                    return [
+                      PopupMenuItem<int>(
+                        value: 0,
+                        child: Text("All Midterms"),
+                      ),
+                      PopupMenuItem<int>(
+                        value: 0,
+                        child: Text("Finished Midterms"),
+                      ),
+                      PopupMenuItem<int>(
+                        value: 0,
+                        child: Text("Remaining Midterms"),
+                      ),
+                    ];
+
+                  }
+                  ,),
               ],
             ),
             body: myCubit.midtermmodel == null

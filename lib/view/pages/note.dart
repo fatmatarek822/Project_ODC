@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:odcworkshop2/view/component/core/core_components.dart';
 import 'package:odcworkshop2/view/pages/add_note.dart';
+import 'package:odcworkshop2/view/pages/layout.dart';
 
 class NoteScreen extends StatelessWidget {
   const NoteScreen({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class NoteScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              navigateAndFinish(context, LayoutScreen());
             },
             icon: const Icon(
               Icons.arrow_back_ios,

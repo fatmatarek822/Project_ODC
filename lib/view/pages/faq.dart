@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:odcworkshop2/view_model/faq/faq_cubit.dart';
 import 'package:odcworkshop2/view_model/faq/faq_state.dart';
 
 
 class FAQScreen extends StatelessWidget {
-  const FAQScreen({Key? key}) : super(key: key);
+   const FAQScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,12 +56,8 @@ class FAQScreen extends StatelessWidget {
                           color: Colors.orange,
                           borderRadius: BorderRadiusDirectional.circular(20),
                         ),
-                        child: ExpansionTile(title:  Text(
-                              myCubit.faqmodel!.data![index].question!,
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
+
+                        child: ExpansionTile(title: Html(data: myCubit.faqmodel!.data![index].question),
                           iconColor: Colors.black,
                           children: [
                             Container(
@@ -69,11 +66,7 @@ class FAQScreen extends StatelessWidget {
                                   borderRadius: BorderRadiusDirectional.only(bottomStart: Radius.circular(20),bottomEnd: Radius.circular(20))
                               ),
                               child:  ListTile(title:
-                              Text(
-                                  myCubit.faqmodel!.data![index].answer!,
-                                style: TextStyle(
-                                ),
-                              ),
+                              Html(data: myCubit.faqmodel!.data![index].answer),
                               ),
                             ),
                           ],

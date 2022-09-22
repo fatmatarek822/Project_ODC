@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:odcworkshop2/view/component/login/login_components.dart';
 import 'package:odcworkshop2/view/component/pages_components/setting_components.dart';
 import 'package:odcworkshop2/view/pages/faq.dart';
 import 'package:odcworkshop2/view/pages/our_partners.dart';
@@ -18,7 +19,13 @@ class SettingsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => SettingCubit(),
       child: BlocConsumer<SettingCubit, SettingState>(
-        listener: (context, state){},
+        listener: (context, state)
+        {
+          if(state is LogOutSuccess)
+          {
+            showToast(text: 'Logout Success', state: ToastStates.SUCCESS);
+          }
+        },
         builder: (context, state)
         {
           SettingCubit cubit = SettingCubit.get(context);
@@ -71,6 +78,7 @@ class SettingsScreen extends StatelessWidget {
                   child: DefaultListTile(text: 'Log Out'),
                   onTap: (){
                     cubit.showMaterialDialog(context);
+
                   },
                 ),
 

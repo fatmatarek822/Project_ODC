@@ -90,7 +90,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       print(value.data);
       registermodel = RegisterModel.fromJson(value.data);
       message = registermodel!.message.toString();
-      emit(RegisterSuccess());
+      emit(RegisterSuccess(registermodel!));
 
     }).catchError((e){
       message= "Error";

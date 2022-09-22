@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 Widget OrangeText () => Row(
   mainAxisAlignment: MainAxisAlignment.center,
-  children: [
+  children: const [
     Text(
       'Orange ',
       style: TextStyle(
@@ -83,15 +83,15 @@ Widget BuildCardLectures({
               children: [
                 Text(
                   name,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                Spacer(),
-                Icon(
+                const Spacer(),
+                const Icon(
                   Icons.alarm,
                   size: 16,
                 ),
-                Text(
+                const Text(
                   '2hrs',
                 ),
               ],
@@ -104,14 +104,14 @@ Widget BuildCardLectures({
                   children: [
                      Text(
                        DaySection,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 12,
                       ),
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.calendar_month,
                           color: Colors.black54,
                           size: 20,
@@ -134,7 +134,7 @@ Widget BuildCardLectures({
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.alarm,
                           color: Colors.green,
                           size: 20,
@@ -148,7 +148,7 @@ Widget BuildCardLectures({
                 ),
                 Column(
                   children: [
-                   Text(
+                   const Text(
                       'End Time',
                       style: TextStyle(
                         color: Colors.grey,
@@ -157,7 +157,7 @@ Widget BuildCardLectures({
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.alarm,
                           color: Colors.red,
                           size: 20,

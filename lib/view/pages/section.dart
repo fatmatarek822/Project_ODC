@@ -32,7 +32,7 @@ class SectionScreen extends StatelessWidget {
               ),
               leading: IconButton(
                   onPressed: () {
-                    navigateTo(context, const LayoutScreen());
+                    navigateAndFinish(context, LayoutScreen());
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
@@ -40,6 +40,7 @@ class SectionScreen extends StatelessWidget {
                   )),
               actions:  [
                 PopupMenuButton(
+                  icon: Icon(Icons.filter_alt, color: Colors.orange, size: 28,),
                   itemBuilder:
                       (context)
                   {
